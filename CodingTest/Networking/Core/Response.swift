@@ -11,14 +11,14 @@ import CleanJSON
 extension Network {
 
     struct Response<T: Decodable>: Decodable {
-        var result: T?
-        var message: String?
+        var data: T?
+        var msg: String?
         var code: Int?
     }
 
     struct ResponseDatas<T: Decodable>: Decodable {
-        var result: [T]?
-        var message: String?
+        var data: [T]?
+        var msg: String?
         var code: Int?
     }
 }

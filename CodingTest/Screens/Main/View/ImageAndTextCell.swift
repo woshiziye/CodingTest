@@ -20,17 +20,16 @@ class ImageAndTextCell: SeparaterCell {
             if count > 0 {
                 imagesView.imageUrls = _unit.imgUrls
                 imagesView.snp.remakeConstraints {
-                    $0.top.equalTo(contentLabel.snp.bottom).offset(10)
+                    $0.top.equalTo(contentLabel.snp.bottom).offset(15)
                     $0.left.right.equalToSuperview().inset(12)
-                    $0.bottom.equalToSuperview().inset(12)
-    //                $0.height.equalTo(width*CGFloat(count)+CGFloat(DISTANCE)*CGFloat(count+1))
+                    $0.bottom.equalToSuperview().inset(18)
                     $0.height.equalTo(imagesView.getTotalHeight())
                 }
             } else {
                 imagesView.snp.remakeConstraints {
-                    $0.top.equalTo(contentLabel.snp.bottom).offset(10)
+                    $0.top.equalTo(contentLabel.snp.bottom).offset(15)
                     $0.left.right.equalToSuperview().inset(12)
-                    $0.bottom.equalToSuperview().inset(2)
+                    $0.bottom.equalToSuperview().inset(8)
                     $0.height.equalTo(0)
                 }
             }
@@ -64,7 +63,8 @@ extension ImageAndTextCell {
 
         bgView.addSubview(contentLabel)
         contentLabel.snp.makeConstraints {
-            $0.left.right.top.equalToSuperview().inset(12)
+            $0.left.right.equalToSuperview().inset(12)
+            $0.top.equalToSuperview().offset(18)
             $0.height.lessThanOrEqualTo(60)
         }
 

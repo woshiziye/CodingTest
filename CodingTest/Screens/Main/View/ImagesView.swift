@@ -24,37 +24,52 @@ class ImagesView: UIView {
             let count = urls.count
             let width = count > 0 ? getImageWidth(imageCount: count) : 0.0
             let height = count == 1 ? width*3.0/4.0 : width
+            numLabel.isHidden = count < 10
+            numLabel.text = String(count)
 
             for i in 0..<imageViewArr.count {
                 let imageView = imageViewArr[i]
                 if i < count {
                     imageView.isHidden = false
                     imageView.frame = CGRect(x: CGFloat(CGFloat(i%3)*(CGFloat(DISTANCE)+width)), y: CGFloat(i/3)*(CGFloat(DISTANCE)+width), width: width, height: height)
-                    imageView.kf.setImage(with: URL(string: urls[i]))
+                    if i == 8 {
+                        numLabel.frame = imageView.frame
+                    }
+                    imageView.kf.setImage(with: URL(string: urls[i]), placeholder: UIImage(named: "placeholder"), options: nil) { (result) in
+                        switch result {
+                            case .success(_):
+                                imageView.addCorner(cornerRadius: 4.0)
+                        case .failure(_):
+                            break
+                        }
+                    }
                 } else {
                     imageView.isHidden = true
                 }
             }
-
-            
         }
 
     }
 
+    private lazy var numLabel: UILabel = {
+        let label = UILabel.custom_label(text: "", font: .boldSystemFont(ofSize: 30), textColor: .white)
+        label.backgroundColor = TSCOLOR_SHADOW
+        label.textAlignment = .center
+        return label
+    }()
+
     init(boundsWidth: CGFloat) {
         super.init(frame: .zero)
-//        self.backgroundColor = .yellow
         self.boundsWidth = boundsWidth
         for _ in 0..<9 {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            TSViewRadius(imageView, 4.0)
-            TSViewBorder(imageView, 0.5, TSCOLOR_LINE)
+            TSViewBorder(imageView, 0.5, TSCOLOR_CCC)
             addSubview(imageView)
             imageViewArr.append(imageView)
         }
 
+        addSubview(numLabel)
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -65,21 +80,22 @@ class ImagesView: UIView {
 
 extension ImagesView {
     func getImageWidth(imageCount: Int) -> CGFloat {
-        let distances = CGFloat(DISTANCE*Double((imageCount-1)))
-        let width = CGFloat(self.boundsWidth-distances)/CGFloat(imageCount)
+        let count = imageCount > 3 ? 3: imageCount
+        let distances = CGFloat(DISTANCE*Double((count-1)))
+        let width = CGFloat(self.boundsWidth-distances)/CGFloat(count)
         return width
-        return (CGFloat(BOUNDS_WIDTH-CGFloat(DISTANCE*Double((imageCount+1)))/CGFloat(imageCount)))
     }
 
     func getTotalHeight() -> CGFloat {
         guard let urls = imageUrls else { return 0.0 }
-        let count = urls.count
+        let count = urls.count > 9 ? 9 : urls.count
         let width = getImageWidth(imageCount: count)
         if count == 1 {
             let height = count == 1 ? width*3.0/4.0 : width
             return height
         } else {
-            return width*CGFloat(count/3)+CGFloat(DISTANCE)*CGFloat(count/3-1)
+            let line = (CGFloat(count)/3.0).ceil
+            return width*line+CGFloat(DISTANCE)*CGFloat(count/3-1)
         }
     }
 }

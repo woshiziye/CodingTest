@@ -12,7 +12,7 @@ class SeparaterCell: UITableViewCell {
     lazy var bgView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        TSViewBorder(view, 0.6, TSCOLOR_LINE)
+        TSViewBorder(view, 0.6, TSCOLOR_CCC)
         return view
     }()
 
@@ -27,23 +27,6 @@ class SeparaterCell: UITableViewCell {
             $0.top.equalToSuperview().inset(12)
             $0.left.right.bottom.equalToSuperview()
         }
-//        if horizonSeperate == true {
-//            bgView.snp.makeConstraints {
-//                $0.top.equalToSuperview().offset(12)
-//                $0.left.right.equalToSuperview().inset(12)
-//                $0.bottom.equalToSuperview()
-//            }
-//        } else {
-//            bgView.snp.makeConstraints {
-//                $0.top.equalToSuperview().offset(12)
-//                $0.left.right.equalToSuperview()
-//                $0.bottom.equalToSuperview()
-//            }
-//        }
-//
-//        if radiusCorner {
-//            TSViewRadius(bgView, 4.0)
-//        }
 
     }
 

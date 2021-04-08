@@ -90,4 +90,4 @@ let TSCOLOR_F5: UIColor = TSCOLOR(hexORhexa: "#F5F5F5")
 let TSCOLOR_LINE: UIColor = TSCOLOR(hexORhexa: "#F1F1F1")
 
 let TSCOLOR_BG: UIColor = TSCOLOR(hexORhexa: "#F3F4FC")
-
+let TSCOLOR_SHADOW: UIColor = TSCOLORA(0, 0, 0, 0.6)

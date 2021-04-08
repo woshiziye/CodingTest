@@ -7,41 +7,37 @@
 
 import UIKit
 import WebKit
+import M80AttributedLabel
 
-class LinkCell: SeparaterCell {
+class LinkCell: UITableViewCell {
 
     static let reuseId: String = "LinkCell"
+    var tapLinkClosure: TSValueClosure<String>?
 
     var unit: ExampleUnit? {
 
         didSet {
             guard let _unit = unit else { return }
-            contentLabel.text = _unit.content
-            self.loadWebView(urlStr: _unit.link)
-            errorLabel.isHidden = true
-        }
+            configureLinkText(text: _unit.content, linkStr: _unit.link)
 
+            let size = linkLabel.sizeThatFits(CGSize(width: SCREEN_WIDTH-24, height: CGFloat.greatestFiniteMagnitude))
+            linkLabel.snp.remakeConstraints {
+                $0.left.right.top.bottom.equalToSuperview().inset(12)
+                $0.height.lessThanOrEqualTo(60)
+                $0.height.equalTo(size.height)
+            }
+        }
     }
 
-    private lazy var contentLabel: UILabel = {
-        let label = UILabel.custom_label(text: "", font: .systemFont(ofSize: 14), textColor: TSCOLOR_TEXT_333)
+    lazy var linkLabel : M80AttributedLabel = {
+        let label = M80AttributedLabel()
+        label.backgroundColor = .clear
+        label.textColor = TSCOLOR_TEXT_333
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.delegate = self
+        label.underLineForLink = true
+        label.lineSpacing = 5.0
         label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var webView: WKWebView = {
-        let view = WKWebView()
-        view.backgroundColor = .gray
-        view.uiDelegate = self
-        view.navigationDelegate = self
-        view.isUserInteractionEnabled = false
-        view.scrollView.showsVerticalScrollIndicator = false
-        return view
-    }()
-
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel.custom_label(text: "加载失败", font: .systemFont(ofSize: 14), textColor: .white)
-        label.isHidden = true
         return label
     }()
 
@@ -57,62 +53,39 @@ class LinkCell: SeparaterCell {
 
 }
 
+extension LinkCell: M80AttributedLabelDelegate {
+    private func configureLinkText(text: String, linkStr: String){
+        let content = text+linkStr
+        linkLabel.text = content
+        let range = (content as NSString).range(of: linkStr)
+        if range.location != NSNotFound {
+            linkLabel.addCustomLink(NSValue(range: range), for: range, linkColor: TSCOLOR_BLUE)
+        }
+    }
+
+    func m80AttributedLabel(_ label: M80AttributedLabel, clickedOnLink linkData: Any) {
+        guard let range = linkData as? NSRange  else { return}
+
+        let text = (linkLabel.text! as NSString).substring(with: range)
+        if text == unit?.link {
+            guard let closure = self.tapLinkClosure, let unit = self.unit else { return }
+            closure(unit.link)
+        }
+    }
+}
+
 extension LinkCell {
 
     func configureUI() {
 
-        bgView.addSubview(contentLabel)
-        contentLabel.snp.makeConstraints {
-            $0.left.right.top.equalToSuperview().inset(12)
-            $0.height.lessThanOrEqualTo(60)
-        }
-
-        bgView.addSubview(webView)
-        webView.snp.makeConstraints {
-            $0.left.right.equalTo(contentLabel)
-            $0.top.equalTo(contentLabel.snp.bottom).offset(10)
-            $0.height.equalTo((SCREEN_WIDTH-24)*3/4)
-            $0.bottom.equalToSuperview().offset(-12)
-        }
-
-    }
-
-    func loadWebView(urlStr: String) {
-        self.webView.load(URLRequest.init(url: URL.init(string: urlStr)!))
-        self.webView.scrollView.contentInsetAdjustmentBehavior = .never
-    }
-}
-
-extension LinkCell: WKUIDelegate, WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("webViewDidStartLoad")
-        self.makeToastActivity(self.center)
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("webView load failed")
-        self.hideToastActivity()
-        errorLabel.isHidden = false
-    }
-
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-
-        if (navigationAction.navigationType == WKNavigationType.linkActivated) {
-            UIApplication.shared.open(navigationAction.request.url!)
-        }
-
-        decisionHandler(.allow)
-    }
+        contentView.addSubview(linkLabel)
 
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("webview finish loading")
-        self.hideToastActivity()
-    }
-
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print("webview didCommit")
+//        bgView.snp.makeConstraints {
+//            $0.
+//        }
     }
 
 }
+
 

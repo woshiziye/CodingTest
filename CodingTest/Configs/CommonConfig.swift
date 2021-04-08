@@ -9,4 +9,4 @@ import Foundation
 
 ///验证码倒计时秒数
 let COUNT_DOWN_SECONDS = 60
-let DISTANCE = 12.0
+let DISTANCE = 8.0

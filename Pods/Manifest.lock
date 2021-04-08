@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.4.1)
   - CleanJSON (1.0.8)
   - Kingfisher (6.2.1)
+  - M80AttributedLabel (1.9.9)
   - MJRefresh (3.5.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -43,6 +44,7 @@ PODS:
 DEPENDENCIES:
   - CleanJSON
   - Kingfisher
+  - M80AttributedLabel
   - MJRefresh
   - Moya
   - Reusable
@@ -55,6 +57,7 @@ SPEC REPOS:
     - Alamofire
     - CleanJSON
     - Kingfisher
+    - M80AttributedLabel
     - MJRefresh
     - Moya
     - Reusable
@@ -66,6 +69,7 @@ SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   CleanJSON: 7cc2fbb8f3face17e80a25a2266199ad31002bfc
   Kingfisher: e71c6fac2aebb1262888cabc2cb13d313362a48f
+  M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
@@ -73,6 +77,6 @@ SPEC CHECKSUMS:
   SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 3ed1d6547f973158b3797c9241bb38073a730c34
+PODFILE CHECKSUM: 996720ce7ae6decaedc94cc890d282d9b8d44dbb
 
 COCOAPODS: 1.9.3

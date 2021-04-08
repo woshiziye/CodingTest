@@ -18,14 +18,14 @@ extension CommonAPI: TargetType {
     var path: String {
         switch self {
         case .getList:
-            return "/common/uploadImg"
+            return "/list"
         }
     }
 
     var method: Moya.Method {
         switch self {
         case .getList:
-            return .post
+            return .get
         }
     }
 

@@ -13,6 +13,7 @@ target ‘CodingTest’ do
     pod 'SwifterSwift'
     pod 'Moya'
     pod 'CleanJSON'
+    pod 'M80AttributedLabel'
     
     
 end

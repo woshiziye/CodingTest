@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         let imageView = UIImageView()
         imageView.image = UIImage(named: "navgation_back")
-        imageView.frame.size = CGSize(width: 10, height: 18)
+        imageView.frame.size = CGSize(width: 18, height: 18)
         imageView.frame.origin.x = 0
         imageView.center.y = $0.center.y
         $0.addSubview(imageView)
@@ -48,6 +48,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = TSCOLOR_BG
+        TSViewBorder(view, 0.6, TSCOLOR_CCC)
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
         if navigationController?.children.count ?? 0 > 1 {
@@ -111,7 +112,7 @@ class ViewController: UIViewController {
     }
 
     func startLoading() {
-        self.view.makeToastActivity(self.view.center)
+        self.view.makeToastActivity(.center)
     }
 
     func endLoading() {

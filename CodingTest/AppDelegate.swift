@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     func configureWindow() {
         let mainVC = MainVC()
-        let rootNavi = UINavigationController(rootViewController: mainVC)
+        let rootNavi = NavigationController(rootViewController: mainVC)
         window = UIWindow()
         window?.rootViewController = rootNavi
         window?.makeKeyAndVisible()

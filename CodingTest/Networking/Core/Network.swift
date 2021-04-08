@@ -33,9 +33,9 @@ class Network {
                 if response.statusCode == 200 {
                     let response = try? response.mapResponseDatas(T.self)
                     if response?.code == 0 {
-                        success(response?.result)
+                        success(response?.data)
                     } else {
-                        error(response?.message ?? "")
+                        error(response?.msg ?? "")
                     }
                 } else {
                     if response.statusCode == 307 {
@@ -58,14 +58,14 @@ class Network {
             case .success(let response):
                 let response = try? response.mapResponse(T.self)
                 if response?.code == 200 {
-                    success(response?.result)
+                    success(response?.data)
                 } else {
                     if response?.code == 307 {
                         error("登录过期")
 //                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //                        appDelegate.logout()
                     } else {
-                        error(response?.message ?? "服务器异常")
+                        error(response?.msg ?? "服务器异常")
                     }
                 }
             case .failure(_):

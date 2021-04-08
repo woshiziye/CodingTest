@@ -11,9 +11,12 @@ import MJRefresh
 class MainVC: ViewController {
 
     let viewModel = MainViewModel()
+
+    private lazy var homeTitleView = HomeTitleView()
+
     private lazy var _refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
-        control.addTarget(self, action: #selector(), for: .valueChanged)
+        control.addTarget(self, action: #selector(getList), for: .valueChanged)
         return control
     }()
 
@@ -25,7 +28,6 @@ class MainVC: ViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 64
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(MainCell.self, forCellReuseIdentifier: MainCell.reuseId)
         tableView.register(TextCell.self, forCellReuseIdentifier: TextCell.reuseId)
         tableView.register(ImageCell.self, forCellReuseIdentifier: ImageCell.reuseId)
         tableView.register(ImageAndTextCell.self, forCellReuseIdentifier: ImageAndTextCell.reuseId)
@@ -39,25 +41,26 @@ class MainVC: ViewController {
         super.viewDidLoad() 
 
         configureUI()
-//        _refreshControl.beginRefreshing()
+//        getList()
     }
 
 }
 
 extension MainVC {
 
-//    func getFunc() {
-//        startLoading()
-//        viewModel.getFunc() { (result) in
-//            self.endLoading()
-//            switch result {
-//            case .success:
-//                break
-//            case .failure(let error):
-//                self.view.makeToast(error)
-//            }
-//        }
-//    }
+    @objc func getList() {
+        startLoading()
+        viewModel.getList() { (result) in
+            self.endLoading()
+            switch result {
+            case .success:
+                self._tableView.reloadData()
+                break
+            case .failure(let error):
+                self.view.makeToast(error)
+            }
+        }
+    }
 
 }
 
@@ -83,6 +86,7 @@ extension MainVC {
 
         title = "列表展示页"
         navigationController?.navigationBar.isHidden = false
+        navigationItem.titleView = homeTitleView
 
         view.addSubview(_tableView)
         _tableView.snp.makeConstraints {
@@ -117,6 +121,12 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         case .link:
             let cell = tableView.dequeueReusableCell(withIdentifier: LinkCell.reuseId, for: indexPath) as! LinkCell
             cell.unit = unit
+            cell.tapLinkClosure = {link in
+                let vc = WebVC()
+                vc.urlStr = link
+                vc.titleStr = "这是一个网页"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
         case .none:
             return UITableViewCell()
@@ -125,7 +135,12 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let unit = viewModel.list[indexPath.row]
+        if unit.type != .link {
+            let vc = DetailVC()
+            vc.viewModel.unit = unit
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }

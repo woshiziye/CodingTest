@@ -51,11 +51,7 @@ extension ImageCell {
         }
         TSViewRadius(bgView, 4.0)
 
-//        bgView.backgroundColor = .red
         bgView.addSubview(imagesView)
-//        imagesView.snp.makeConstraints {
-//            $0.top.bottom.left.right.equalToSuperview()
-//        }
 
     }
 
