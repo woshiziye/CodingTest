@@ -3,7 +3,7 @@
 
 
 ## To start
-不需要在本地pod install，我连带pods文件上传到了repo
+不需要在本地pod install，我连带pods文件上传到了repo，直接运行即可（模拟器），如要真机调试需要配置Signing信息和对应的bundleId
 
 ## 目录
 
@@ -12,6 +12,7 @@
 [详情页](#详情页)
 
 [实现细节](#实现细节)
+
 
 ## 首页
 
@@ -36,6 +37,8 @@
 >     &nbsp;&nbsp;&nbsp;"link": "https://abtwallet.io/zh/"  
 >}  
 
+
+
 ## 详情页
 <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/4.PNG?raw=truePNG" width="300" /> <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/5.PNG?raw=truePNG" width="300" /> <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/6.PNG?raw=truePNG" width="300" />
 
@@ -56,6 +59,7 @@
 <title>研发周报
 ```
 > 这样就可以根据标签取出 head、date、short、link 等数据，再进行对应样式展示
+
 
 ## 实现细节
 - 列表数据根据pageSize每次读取，可加载更多，每次加载一个page的数据
