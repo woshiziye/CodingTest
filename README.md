@@ -13,6 +13,8 @@
 
 [实现细节](#实现细节)
 
+<br/>
+
 
 ## 首页
 
@@ -37,7 +39,7 @@
 >     &nbsp;&nbsp;&nbsp;"link": "https://abtwallet.io/zh/"  
 >}  
 
-
+<br/>
 
 ## 详情页
 <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/4.PNG?raw=truePNG" width="300" /> <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/5.PNG?raw=truePNG" width="300" /> <img src="https://github.com/woshiziye/CodingTest/blob/master/CodingTest/ScreenShot/6.PNG?raw=truePNG" width="300" />
@@ -60,13 +62,16 @@
 ```
 > 这样就可以根据标签取出 head、date、short、link 等数据，再进行对应样式展示
 
-
+<br/>
+  
 ## 实现细节
 - 列表数据根据pageSize每次读取，可加载更多，每次加载一个page的数据
 - 列表中图片展示，单张/多张，根据图片数量计算size，达到美观效果
 - 多图由cell中的子控件ImagesView来管理，初始化加载9张图片，然后每次用到图片展示，不需要再次初始化，复用原来子view即可
 - 使用多种cell来根据不同type展示，方便后续单独调整type样式，使代码维护性更高
 - 图片加载使用Kingfisher框架，实现缓存/加载，不用担心反复加载，提高list中图片复用效率
+
+<br/>
 
 详情页参考了ArcBlock新闻页展示风格 [链接](https://www.arcblock.io/blog/zh/post/2021/03/31/march-monthly-review)
 
