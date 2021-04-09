@@ -38,7 +38,8 @@ class ImagesView: UIView {
                     imageView.kf.setImage(with: URL(string: urls[i]), placeholder: UIImage(named: "placeholder"), options: nil) { (result) in
                         switch result {
                             case .success(_):
-                                imageView.addCorner(cornerRadius: 4.0)
+                                break
+//                                imageView.addCorner(cornerRadius: 4.0)
                         case .failure(_):
                             break
                         }
@@ -65,6 +66,7 @@ class ImagesView: UIView {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
             TSViewBorder(imageView, 0.5, TSCOLOR_CCC)
+            imageView.clipsToBounds = true
             addSubview(imageView)
             imageViewArr.append(imageView)
         }
