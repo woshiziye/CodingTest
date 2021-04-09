@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "type": "text",
+      "content": "首先，感谢您抽出宝贵的时间进行 Coding Test, 这个 Coding Test 的目标是实现一个多类型的列表页以及对应的详情页面，您可以自由发挥实现整体效果，我们将根据您的最终作品做一个评估考核。"
+    },
+    {
+      "id": 2,
+      "type": "img",
+      "imgUrls": [
+        "https://www.arcblockio.cn/blog/static/2c6120caf67e5c927e7254f115e58fcd/38a09/cover.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "text-img",
+      "content": "<head>ArcBlock 2021 年 3 月回顾<date>2021-03-31<short>3 月，ArcBlock 研发团队进行了一系列产品更新升级，并在反向换币服务、资产链迁移、实现 NFT 购买 Blocklet 及启动 ABT 节点实例等方面取得长足进展。<title>产品更新与升级<link href='https://www.arcblock.io/blog/zh/post/2021/03/06/abtnode-changelog-03-06-2021'>ABT 节点 1.2.3 版更新日志<link href='https://www.arcblock.io/blog/zh/post/2021/03/22/abtnode-changelog-03-22-2021'>ABT 节点 1.2.5 版更新日志<link href='https://www.arcblock.io/blog/zh/post/2021/03/29/abtnode-changelog-03-29-2021'>ABT 节点 1.2.6 版更新日志<link href='https://www.arcblock.io/blog/zh/post/2021/03/05/webwallet-changelog-03-05-2021'>ABT 钱包网页端 0.2.20 版更新日志<title>研发周报<link href='https://www.arcblock.io/blog/zh/post/2021/03/05/engineering-weekly-updates-03-05-2021'>ArcBlock 每周研发进展（3 月 5 日）<link href='https://www.arcblock.io/blog/zh/post/2021/03/12/engineering-weekly-updates-03-12-2021'>ArcBlock 每周研发进展（3 月 12 日）<link href='https://www.arcblock.io/blog/zh/post/2021/03/19/engineering-weekly-updates-03-19-2021'>ArcBlock 每周研发进展（3 月 19 日）<link href='https://www.arcblock.io/blog/zh/post/2021/03/26/engineering-weekly-updates-03-26-2021'>ArcBlock 每周研发进展（3 月 26 日）<title>招聘<link href='https://www.arcblock.io/blog/zh/post/2021/03/12/hiring-product-manager'>ArcBlock 中国招聘产品经理",
+      "imgUrls": [
+        "https://www.arcblock.io/blog/static/c73dd6e28f7aa039ddb21dbfbb175a74/b355d/update.jpg",
+        "https://www.arcblock.io/blog/static/8199f572cfea911d3a579e605c7aded6/3ce4b/weekly.jpg",
+        "https://www.arcblock.io/blog/static/d5a5c62e38ef3310b19a58c1f0f71911/1ca3f/hiring.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "text-img",
+      "content": "下面是 ArcBlock DevCon 2020 的精彩图片...(可能是很长的文字，多张不同图片，图片可以是0张或者很多张，这里只给了三张为例子)",
+      "imgUrls": [
+        "https://www.arcblockio.cn/blog/static/88b798d281e42ae3570a25e208e89d39/38a09/cover.jpg",
+        "https://www.arcblockio.cn/blog/static/461a789adcb0f768d46d60163ee73bd3/f5292/devcon.jpg",
+        "https://www.arcblock.io/blog/static/fb2e8a2c56da3fadc4ff21ed5d96a4bc/38a09/cover.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "text-img",
+      "content": "这是 ArcBlock ABT Node 界面截图",
+      "imgUrls": [
+        "https://www.arcblockio.cn/blog/static/e8e5ec2f2824b819380b605d6c50cc2b/92c65/blocklets.png"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "text-link",
+      "content": "这是 ABT 钱包的官网页面, 欢迎体验（需要考虑链接可访问）",
+      "link": "https://abtwallet.io/zh/"
+    }
+  ]

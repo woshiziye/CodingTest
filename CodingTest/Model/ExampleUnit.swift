@@ -17,7 +17,22 @@ enum CellType: String, Codable {
 struct ExampleUnit: Codable {
     var id: Int?
     var type: CellType?
-    var content: String = ""
-    var imgUrls: [String] = []
-    var link: String = ""
+    var content: String?
+    var imgUrls: [String]?
+    var link: String?
+
+    var isFormated: Bool {
+        guard let _content = content else { return false }
+        return _content.isTextFormated()
+    }
+
+    var formatUnits: [TextFormatUnit] {
+        guard let _content = content else { return [] }
+        return _content.getTextFormatUnit()
+    }
+    var short: String {
+        guard let _content = content else { return "" }
+        return _content.getShortText()
+
+    }
 }

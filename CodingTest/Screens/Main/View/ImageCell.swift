@@ -16,10 +16,8 @@ class ImageCell: SeparaterCell {
         didSet {
             guard let _unit = unit else { return }
             imagesView.imageUrls = _unit.imgUrls
-//            let count = _unit.imgUrls.count
             imagesView.snp.remakeConstraints {
                 $0.top.left.bottom.right.equalToSuperview()
-//                $0.height.equalTo(width*CGFloat(count)+CGFloat(DISTANCE)*CGFloat(count+1))
                 $0.height.equalTo(imagesView.getTotalHeight())
             }
         }

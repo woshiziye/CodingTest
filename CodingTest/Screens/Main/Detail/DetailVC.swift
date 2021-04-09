@@ -129,14 +129,15 @@ extension DetailVC {
 extension DetailVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let unit = viewModel.unit else { return 0 }
-        let count = unit.imgUrls.count
+        guard let unit = viewModel.unit, let imageUrls = unit.imgUrls else { return 0 }
+        let count = imageUrls.count
         return count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let imageUrl = viewModel.unit?.imgUrls[indexPath.row]
+        guard let unit = viewModel.unit, let imageUrls = unit.imgUrls else { return UITableViewCell() }
+        let imageUrl = imageUrls[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: DetaiImageCell.reuseId, for: indexPath) as! DetaiImageCell
         cell.imageUrl = imageUrl
         return cell

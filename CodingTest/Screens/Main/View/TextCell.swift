@@ -15,8 +15,9 @@ class TextCell: SeparaterCell {
     var unit: ExampleUnit? {
 
         didSet {
-            guard let _unit = unit else { return }
-            contentLabel.text = "📝 "+_unit.content
+            guard let _unit = unit, let content = _unit.content else { return }
+            contentLabel.text = "📝 "+content
+
             let height = contentLabel.sizeThatFits(CGSize(width: SCREEN_WIDTH-24, height: CGFloat.greatestFiniteMagnitude)).height
             contentLabel.snp.remakeConstraints {
                 $0.left.right.equalToSuperview().inset(12)
@@ -38,12 +39,6 @@ class TextCell: SeparaterCell {
         label.numberOfLines = 0
         return label
     }()
-
-//    private lazy var contentLabel: UILabel = {
-//        let label = UILabel.custom_label(text: "", font: UIFont(name: "ArialMT", size: 17)!, textColor: TSCOLOR_TEXT_333)
-//        label.numberOfLines = 0
-//        return label
-//    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -17,8 +17,8 @@ class LinkCell: UITableViewCell {
     var unit: ExampleUnit? {
 
         didSet {
-            guard let _unit = unit else { return }
-            configureLinkText(text: _unit.content, linkStr: _unit.link)
+            guard let _unit = unit, let content = _unit.content, let link = _unit.link else { return }
+            configureLinkText(text: content, linkStr: link)
 
             let size = linkLabel.sizeThatFits(CGSize(width: SCREEN_WIDTH-24, height: CGFloat.greatestFiniteMagnitude))
             linkLabel.snp.remakeConstraints {
@@ -68,8 +68,8 @@ extension LinkCell: M80AttributedLabelDelegate {
 
         let text = (linkLabel.text! as NSString).substring(with: range)
         if text == unit?.link {
-            guard let closure = self.tapLinkClosure, let unit = self.unit else { return }
-            closure(unit.link)
+            guard let closure = self.tapLinkClosure, let unit = self.unit, let link = unit.link else { return }
+            closure(link)
         }
     }
 }
@@ -79,11 +79,6 @@ extension LinkCell {
     func configureUI() {
 
         contentView.addSubview(linkLabel)
-
-
-//        bgView.snp.makeConstraints {
-//            $0.
-//        }
     }
 
 }

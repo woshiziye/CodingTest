@@ -108,12 +108,6 @@ extension DetaiImageCell {
             $0.top.equalTo(blackView.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
-
-//        view.addSubview(line)
-//        line.snp.makeConstraints {
-//            $0.left.right.top.bottom.equalToSuperview()
-//        }
-
     }
 
 }

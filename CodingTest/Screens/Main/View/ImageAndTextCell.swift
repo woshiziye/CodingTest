@@ -14,9 +14,13 @@ class ImageAndTextCell: SeparaterCell {
     var unit: ExampleUnit? {
 
         didSet {
-            guard let _unit = unit else { return }
-            contentLabel.text = _unit.content
-            let count = _unit.imgUrls.count
+            guard let _unit = unit, let imageUrls = _unit.imgUrls, let content = _unit.content else { return }
+            if !_unit.isFormated {
+                contentLabel.text = content
+            } else {
+                contentLabel.text = _unit.short
+            }
+            let count = imageUrls.count
             if count > 0 {
                 imagesView.imageUrls = _unit.imgUrls
                 imagesView.snp.remakeConstraints {
